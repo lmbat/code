@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaisheng.mapper.UserMapper">
+    <select id="findById" parameterType="int" resultType="User">
+        select * from t_user where id = #{id};
+    </select>
+
+    <select id="findAll" resultType="User">
+        select * from t_user;
+    </select>
+
+    <select id="page" resultType="User" parameterType="map">
+        select * from t_user limit #{start}, #{size};
+    </select>
+
+    <select id="page2" resultType="User">
+        select * from t_user limit #{arg0}, #{arg1};
+    </select>
+
+    <select id="page3" resultType="User">
+        select * from t_user limit #{start}, #{size};
+    </select>
+
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (user_name, address, tel) values (#{userName}, #{address}, #{tel});
+    </insert>
+
+    <update id="update" parameterType="User">
+        update t_user set user_name = #{userName}, tel = #{tel} where id = #{id};
+    </update>
+
+    <delete id="delById" parameterType="int">
+        delete from t_user where id = #{id};
+    </delete>
+
+</mapper>
